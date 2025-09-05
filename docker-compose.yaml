@@ -1,3 +1,5 @@
+version: "3"
+
 services:
   web:
     build:
@@ -8,7 +10,7 @@ services:
       - redis
       - db
     ports:
-      - "8000:5000"
+      - "8000:8000"
 
   redis:
     build:
@@ -18,7 +20,7 @@ services:
     volumes:
       - ./redis/data:/data
     ports:
-      - "1234:1234"
+      - "6379:6379"
 
   db:
     build:
@@ -28,6 +30,6 @@ services:
     volumes:
       - ./postgres/data:/data
     ports:
-      - "5678:5678"
+      - "5432:5432"
 
 
