@@ -1,0 +1,33 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    depends_on:
+      - redis
+      - db
+    ports:
+      - "8000:5000"
+
+  redis:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+    container_name: redis
+    volumes:
+      - ./redis/data:/data
+    ports:
+      - "1234:1234"
+
+  db:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    container_name: db
+    volumes:
+      - ./postgres/data:/data
+    ports:
+      - "5678:5678"
+
+
